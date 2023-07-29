@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import LoginFrom from 'components/LoginFrom';
-// import SendFeedback from 'componentsv2/SendFeedback';
 import './index.css';
 import App from 'components/App';
+import ContactApp from 'componentsv2/ContactApp';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <LoginFrom/> */}
-    {/* <SendFeedback/> */}
     <App/>
+    <ContactApp/>
   </React.StrictMode>
 );

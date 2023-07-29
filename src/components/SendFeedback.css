@@ -6,6 +6,9 @@
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+  margin-bottom: 150px;
+  border: 2px solid #FFA500;
+  background: linear-gradient(135deg, #FFA500, #FF5733, #FFC966, #75C0C3, #FF5733, #FFA500);
 }
 
 form {
@@ -95,6 +98,6 @@ li p {
 
 .hidden-statistics {
   font-size: 20px;
-  color: #888;
+  color: #020202;
   font-style: italic;
 }
