@@ -4,33 +4,34 @@ body {
     margin: 20px;
   }
   
-  /* Style dla komponentu ContactApp */
+  
   .ContactApp {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-bottom: 60px;
   }
   
-  /* Style dla sekcji tytułu (Phonebook) */
+  
   h1 {
     text-align: center;
   }
   
-  /* Style dla sekcji listy kontaktów */
+  
   h2 {
     margin-top: 20px;
     text-align: center;
   }
   
-  /* Style dla formularza */
+  
   form {
     display: flex;
     flex-direction: column;
   }
   
-  /* Style dla pola tekstowego */
+  
   input[type="text"] {
     padding: 8px;
     margin-bottom: 10px;
@@ -38,7 +39,7 @@ body {
     border-radius: 4px;
   }
   
-  /* Style dla przycisku */
+  
   button {
     padding: 8px;
     background-color: #007bff;
@@ -48,19 +49,19 @@ body {
     cursor: pointer;
   }
   
-  /* Style dla sekcji dodawania kontaktu (Name input + Add Contact button) */
+  
   .form-section {
     display: flex;
     flex-direction: column;
   }
   
-  /* Style dla listy kontaktów */
+  
   ul {
     padding: 0;
     margin: 0;
   }
   
-  /* Style dla elementów listy kontaktów */
+ 
   li {
     padding: 5px 0;
    

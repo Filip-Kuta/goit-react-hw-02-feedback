@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import './ContactApp.css';
+import ContactForm from './ContactForm';
+import ContactList from './ContactList';
 
 class ContactApp extends Component {
   state = {
@@ -55,64 +57,29 @@ class ContactApp extends Component {
     this.setState({ filter: value });
   };
 
-  handleDeleteContact = (id) => {
-    const { contacts } = this.state;
-    const updatedContacts = contacts.filter((contact) => contact.id !== id);
-    this.setState({ contacts: updatedContacts });
-  };
-
   render() {
     const { name, number, contacts, filter } = this.state;
-
-    const filteredContacts = contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
 
     return (
       <div className="ContactApp">
         <h1>Phonebook</h1>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            value={name}
-            onChange={this.handleChange}
-          />
+        <ContactForm
+          name={name}
+          number={number}
+          onNameChange={this.handleChange}
+          onNumberChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        />
 
-          <label htmlFor="number">Phone Number:</label>
-          <input
-            type="text"
-            name="number"
-            title="Phone number must be digits and can start with +"
-            required
-            value={number}
-            onChange={this.handleChange}
-          />
-
-          <button type="submit">Add Contact</button>
-        </form>
-
-        <h2>Contacts</h2>
         <input
           type="text"
           placeholder="Search by name"
           value={filter}
           onChange={this.handleFilterChange}
         />
-        <ul>
-          {filteredContacts.map((contact) => (
-            <li key={contact.id}>
-              {contact.name}: {contact.number}{' '}
-              <button onClick={() => this.handleDeleteContact(contact.id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
+
+        <ContactList contacts={contacts} filter={filter} />
       </div>
     );
   }
