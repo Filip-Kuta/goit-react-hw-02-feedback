@@ -43,15 +43,12 @@ button {
 }
 
 .reset-button {
-  background-color: #007bff;
+  
   transition: background-color 0.3s;
   display: flex;
   margin: 0 auto;
 }
 
-.reset-button:hover {
-  background-color: red;
-}
 
 .form-section {
   display: flex;
