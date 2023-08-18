@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import './ContactApp.css';
@@ -6,7 +5,6 @@ import './ContactApp.css';
 function ContactApp() {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
-  const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [number, setNumber] = useState('');
 
@@ -29,7 +27,7 @@ function ContactApp() {
   }, [contacts]);
 
   const handleChange = (event, setterFunction, formatFunction) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
     if (formatFunction) {
       const formattedValue = formatFunction(value);
       setterFunction(formattedValue);
@@ -42,17 +40,15 @@ function ContactApp() {
     event.preventDefault();
     const existingContact = contacts.find(
       (contact) =>
-        contact.name.toLowerCase() === name.toLowerCase() &&
         contact.surname.toLowerCase() === surname.toLowerCase() &&
         contact.number === number
     );
     if (existingContact) {
-      alert('Contact with the same name, surname, and number already exists.');
+      alert('Contact with the same surname and number already exists.');
     } else {
       const id = nanoid();
-      const newContact = { id, name, surname, number };
+      const newContact = { id, surname, number };
       setContacts([...contacts, newContact]);
-      setName('');
       setSurname('');
       setNumber('');
     }
@@ -85,13 +81,8 @@ function ContactApp() {
     return formattedNumber;
   };
 
-  const capitalizeFirstLetter = (value) => {
-    return value.charAt(0).toUpperCase() + value.slice(1);
-  };
-
   const filteredContacts = contacts.filter(
     (contact) =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
       contact.surname.toLowerCase().includes(filter.toLowerCase())
   );
 
@@ -100,21 +91,6 @@ function ContactApp() {
       <h1>Phonebook</h1>
 
       <form onSubmit={handleSubmit}>
-        <div className="form-section">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder='Jan'
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            value={name}
-            onChange={(event) => handleChange(event, setName, capitalizeFirstLetter)}
-          />
-        </div>
-
         <div className="form-section">
           <label htmlFor='surname'>Surname:</label>
           <input
@@ -126,7 +102,7 @@ function ContactApp() {
             title="Surname"
             required
             value={surname}
-            onChange={(event) => handleChange(event, setSurname, capitalizeFirstLetter)}
+            onChange={(event) => handleChange(event, setSurname)}
           />
         </div>
 
@@ -149,14 +125,14 @@ function ContactApp() {
       <h2>Contacts</h2>
       <input
         type="text"
-        placeholder="Search by name"
+        placeholder="Search by surname"
         value={filter}
         onChange={handleFilterChange}
       />
       <ul>
         {filteredContacts.map((contact) => (
           <li key={contact.id}>
-            {contact.name} {contact.surname}: {contact.number}{' '}
+            {contact.surname}: {contact.number}{' '}
             <button onClick={() => handleDeleteContact(contact.id)}>Delete</button>
           </li>
         ))}
